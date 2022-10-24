@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AlmoxarifadoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Atendimento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProduto" Type="int" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="QuantidadeProdUsada" Type="int" />
+          <Property Name="NomePrestador" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataHoraFeita" Type="datetime" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="30" />
+          <Property Name="Descricao" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ativo" Type="bit" />
+          <Property Name="DataInclusao" Type="datetime" />
+          <Property Name="DataAlteracao" Type="datetime" />
+          <Property Name="DataExclusao" Type="datetime" />
+          <Property Name="IdServico" Type="int" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazãoSocial" Type="nvarchar" MaxLength="50" />
+          <Property Name="NomeFantasia" Type="nvarchar" MaxLength="50" />
+          <Property Name="CNPJ" Type="nvarchar" MaxLength="24" />
+          <Property Name="Responsavel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Rua" Type="nvarchar" MaxLength="50" />
+          <Property Name="CEP" Type="int" />
+          <Property Name="Ativo" Type="bit" />
+          <Property Name="DataAlteracao" Type="datetime" />
+          <Property Name="DataExclusao" Type="datetime" />
+          <Property Name="Dependente" Type="bit" />
+          <Property Name="IdMatrix" Type="int" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="Especificacao" Type="nvarchar" MaxLength="255" />
+          <Property Name="ValorUn" Type="int" />
+          <Property Name="Usado" Type="bit" />
+          <Property Name="DataInclusao" Type="datetime" />
+          <Property Name="Ativo" Type="bit" />
+          <Property Name="DataAlteracao" Type="datetime" />
+          <Property Name="DataExclusao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="DataSolicitada" Type="datetime" />
+          <Property Name="DataRealizada" Type="datetime" />
+          <Property Name="QuantidadeVisitas" Type="int" />
+          <Property Name="Concluido" Type="bit" />
+          <Property Name="Ativo" Type="bit" />
+          <Property Name="DataInclusao" Type="datetime" />
+          <Property Name="DataAlteracao" Type="datetime" />
+          <Property Name="DataExclusao" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Atendimen__IdCli__2C3393D0">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Atendimen__IdPro__2B3F6F97">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="IdProduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servico__IdClien__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlmoxarifadoModelStoreContainer">
+          <EntitySet Name="Atendimento" EntityType="Self.Atendimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Atendimen__IdCli__2C3393D0" Association="Self.FK__Atendimen__IdCli__2C3393D0">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Atendimen__IdPro__2B3F6F97" Association="Self.FK__Atendimen__IdPro__2B3F6F97">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servico__IdClien__286302EC" Association="Self.FK__Servico__IdClien__286302EC">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Servico" EntitySet="Servico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlmoxarifadoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Atendimento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProduto" Type="Int32" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="QuantidadeProdUsada" Type="Int32" />
+          <Property Name="NomePrestador" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataHoraFeita" Type="DateTime" Precision="3" />
+          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ativo" Type="Boolean" />
+          <Property Name="DataInclusao" Type="DateTime" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DataExclusao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Atendimen__IdCli__2C3393D0" FromRole="Atendimento" ToRole="Cliente" />
+          <NavigationProperty Name="Produto" Relationship="Self.FK__Atendimen__IdPro__2B3F6F97" FromRole="Atendimento" ToRole="Produto" />
+          <Property Name="IdServico" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazãoSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NomeFantasia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CNPJ" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Responsavel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Rua" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CEP" Type="Int32" />
+          <Property Name="Ativo" Type="Boolean" />
+          <Property Name="DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DataExclusao" Type="DateTime" Precision="3" />
+          <Property Name="Dependente" Type="Boolean" />
+          <Property Name="IdMatrix" Type="Int32" />
+          <NavigationProperty Name="Atendimentoes" Relationship="Self.FK__Atendimen__IdCli__2C3393D0" FromRole="Cliente" ToRole="Atendimento" />
+          <NavigationProperty Name="Servicoes" Relationship="Self.FK__Servico__IdClien__286302EC" FromRole="Cliente" ToRole="Servico" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Especificacao" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ValorUn" Type="Int32" />
+          <Property Name="Usado" Type="Boolean" />
+          <Property Name="DataInclusao" Type="DateTime" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" />
+          <Property Name="DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DataExclusao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Atendimentoes" Relationship="Self.FK__Atendimen__IdPro__2B3F6F97" FromRole="Produto" ToRole="Atendimento" />
+        </EntityType>
+        <EntityType Name="Servico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="DataSolicitada" Type="DateTime" Precision="3" />
+          <Property Name="DataRealizada" Type="DateTime" Precision="3" />
+          <Property Name="QuantidadeVisitas" Type="Int32" />
+          <Property Name="Concluido" Type="Boolean" />
+          <Property Name="Ativo" Type="Boolean" />
+          <Property Name="DataInclusao" Type="DateTime" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Precision="3" />
+          <Property Name="DataExclusao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Servico__IdClien__286302EC" FromRole="Servico" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK__Atendimen__IdCli__2C3393D0">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Atendimen__IdPro__2B3F6F97">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="0..1" />
+          <End Role="Atendimento" Type="Self.Atendimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Atendimento">
+              <PropertyRef Name="IdProduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servico__IdClien__286302EC">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Servico" Type="Self.Servico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Servico">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlmoxarifadoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Atendimentoes" EntityType="Self.Atendimento" />
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Produtoes" EntityType="Self.Produto" />
+          <EntitySet Name="Servicoes" EntityType="Self.Servico" />
+          <AssociationSet Name="FK__Atendimen__IdCli__2C3393D0" Association="Self.FK__Atendimen__IdCli__2C3393D0">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Atendimento" EntitySet="Atendimentoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Atendimen__IdPro__2B3F6F97" Association="Self.FK__Atendimen__IdPro__2B3F6F97">
+            <End Role="Produto" EntitySet="Produtoes" />
+            <End Role="Atendimento" EntitySet="Atendimentoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servico__IdClien__286302EC" Association="Self.FK__Servico__IdClien__286302EC">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Servico" EntitySet="Servicoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlmoxarifadoModelStoreContainer" CdmEntityContainer="AlmoxarifadoEntities">
+          <EntitySetMapping Name="Atendimentoes">
+            <EntityTypeMapping TypeName="AlmoxarifadoModel.Atendimento">
+              <MappingFragment StoreEntitySet="Atendimento">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdProduto" ColumnName="IdProduto" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="QuantidadeProdUsada" ColumnName="QuantidadeProdUsada" />
+                <ScalarProperty Name="NomePrestador" ColumnName="NomePrestador" />
+                <ScalarProperty Name="DataHoraFeita" ColumnName="DataHoraFeita" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataInclusao" ColumnName="DataInclusao" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="DataExclusao" ColumnName="DataExclusao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="AlmoxarifadoModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RazãoSocial" ColumnName="RazãoSocial" />
+                <ScalarProperty Name="NomeFantasia" ColumnName="NomeFantasia" />
+                <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
+                <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Rua" ColumnName="Rua" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="DataExclusao" ColumnName="DataExclusao" />
+                <ScalarProperty Name="Dependente" ColumnName="Dependente" />
+                <ScalarProperty Name="IdMatrix" ColumnName="IdMatrix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produtoes">
+            <EntityTypeMapping TypeName="AlmoxarifadoModel.Produto">
+              <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Especificacao" ColumnName="Especificacao" />
+                <ScalarProperty Name="ValorUn" ColumnName="ValorUn" />
+                <ScalarProperty Name="Usado" ColumnName="Usado" />
+                <ScalarProperty Name="DataInclusao" ColumnName="DataInclusao" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="DataExclusao" ColumnName="DataExclusao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicoes">
+            <EntityTypeMapping TypeName="AlmoxarifadoModel.Servico">
+              <MappingFragment StoreEntitySet="Servico">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="DataSolicitada" ColumnName="DataSolicitada" />
+                <ScalarProperty Name="DataRealizada" ColumnName="DataRealizada" />
+                <ScalarProperty Name="QuantidadeVisitas" ColumnName="QuantidadeVisitas" />
+                <ScalarProperty Name="Concluido" ColumnName="Concluido" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataInclusao" ColumnName="DataInclusao" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="DataExclusao" ColumnName="DataExclusao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
