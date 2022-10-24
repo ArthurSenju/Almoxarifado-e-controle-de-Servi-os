@@ -55,11 +55,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Almoxarifado.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Almoxarifado.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Almoxarifado.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Almoxarifado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Almoxarifado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Almoxarifado.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Atendimento.cs">
-      <DependentUpon>ModeloAlmoxarifado.tt</DependentUpon>
+      <DependentUpon>Almoxarifado.tt</DependentUpon>
     </Compile>
     <Compile Include="Cliente.cs">
-      <DependentUpon>ModeloAlmoxarifado.tt</DependentUpon>
+      <DependentUpon>Almoxarifado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Produto.cs">
+      <DependentUpon>Almoxarifado.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Servico.cs">
+      <DependentUpon>Almoxarifado.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\CadastroProduto.cs">
       <SubType>Form</SubType>
@@ -73,32 +94,8 @@
     <Compile Include="Views\Estoque.Designer.cs">
       <DependentUpon>Estoque.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModeloAlmoxarifado.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloAlmoxarifado.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModeloAlmoxarifado.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloAlmoxarifado.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModeloAlmoxarifado.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloAlmoxarifado.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Produto.cs">
-      <DependentUpon>ModeloAlmoxarifado.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servico.cs">
-      <DependentUpon>ModeloAlmoxarifado.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Servico.Designer.cs">
-      <DependentUpon>Servico.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Views\CadastroProduto.resx">
       <DependentUpon>CadastroProduto.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,15 +111,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Servico.resx">
-      <DependentUpon>Servico.cs</DependentUpon>
-    </EmbeddedResource>
-    <EntityDeploy Include="ModeloAlmoxarifado.edmx">
+    <EntityDeploy Include="Almoxarifado.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloAlmoxarifado.Designer.cs</LastGenOutput>
+      <LastGenOutput>Almoxarifado.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ModeloAlmoxarifado.edmx.diagram">
-      <DependentUpon>ModeloAlmoxarifado.edmx</DependentUpon>
+    <None Include="Almoxarifado.edmx.diagram">
+      <DependentUpon>Almoxarifado.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -139,19 +133,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModeloAlmoxarifado.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloAlmoxarifado.Context.cs</LastGenOutput>
-      <DependentUpon>ModeloAlmoxarifado.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModeloAlmoxarifado.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloAlmoxarifado.edmx</DependentUpon>
-      <LastGenOutput>ModeloAlmoxarifado.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Almoxarifado.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Almoxarifado.edmx</DependentUpon>
+      <LastGenOutput>Almoxarifado.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Almoxarifado.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Almoxarifado.edmx</DependentUpon>
+      <LastGenOutput>Almoxarifado.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

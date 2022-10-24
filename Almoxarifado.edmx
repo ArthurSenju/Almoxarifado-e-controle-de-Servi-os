@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AlmoxarifadoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AlmoxarifadoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Atendimento">
           <Key>
             <PropertyRef Name="Id" />
@@ -124,7 +124,8 @@
             <End Role="Servico" EntitySet="Servico" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlmoxarifadoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -144,9 +145,9 @@
           <Property Name="DataInclusao" Type="DateTime" Precision="3" />
           <Property Name="DataAlteracao" Type="DateTime" Precision="3" />
           <Property Name="DataExclusao" Type="DateTime" Precision="3" />
+          <Property Name="IdServico" Type="Int32" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK__Atendimen__IdCli__2C3393D0" FromRole="Atendimento" ToRole="Cliente" />
           <NavigationProperty Name="Produto" Relationship="Self.FK__Atendimen__IdPro__2B3F6F97" FromRole="Atendimento" ToRole="Produto" />
-          <Property Name="IdServico" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -165,8 +166,8 @@
           <Property Name="DataExclusao" Type="DateTime" Precision="3" />
           <Property Name="Dependente" Type="Boolean" />
           <Property Name="IdMatrix" Type="Int32" />
-          <NavigationProperty Name="Atendimentoes" Relationship="Self.FK__Atendimen__IdCli__2C3393D0" FromRole="Cliente" ToRole="Atendimento" />
-          <NavigationProperty Name="Servicoes" Relationship="Self.FK__Servico__IdClien__286302EC" FromRole="Cliente" ToRole="Servico" />
+          <NavigationProperty Name="Atendimento" Relationship="Self.FK__Atendimen__IdCli__2C3393D0" FromRole="Cliente" ToRole="Atendimento" />
+          <NavigationProperty Name="Servico" Relationship="Self.FK__Servico__IdClien__286302EC" FromRole="Cliente" ToRole="Servico" />
         </EntityType>
         <EntityType Name="Produto">
           <Key>
@@ -181,7 +182,7 @@
           <Property Name="Ativo" Type="Boolean" />
           <Property Name="DataAlteracao" Type="DateTime" Precision="3" />
           <Property Name="DataExclusao" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Atendimentoes" Relationship="Self.FK__Atendimen__IdPro__2B3F6F97" FromRole="Produto" ToRole="Atendimento" />
+          <NavigationProperty Name="Atendimento" Relationship="Self.FK__Atendimen__IdPro__2B3F6F97" FromRole="Produto" ToRole="Atendimento" />
         </EntityType>
         <EntityType Name="Servico">
           <Key>
@@ -235,22 +236,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AlmoxarifadoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Atendimentoes" EntityType="Self.Atendimento" />
-          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
-          <EntitySet Name="Produtoes" EntityType="Self.Produto" />
-          <EntitySet Name="Servicoes" EntityType="Self.Servico" />
+        <EntityContainer Name="AlmoxarifadoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Atendimento" EntityType="Self.Atendimento" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" />
+          <EntitySet Name="Servico" EntityType="Self.Servico" />
           <AssociationSet Name="FK__Atendimen__IdCli__2C3393D0" Association="Self.FK__Atendimen__IdCli__2C3393D0">
-            <End Role="Cliente" EntitySet="Clientes" />
-            <End Role="Atendimento" EntitySet="Atendimentoes" />
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
           </AssociationSet>
           <AssociationSet Name="FK__Atendimen__IdPro__2B3F6F97" Association="Self.FK__Atendimen__IdPro__2B3F6F97">
-            <End Role="Produto" EntitySet="Produtoes" />
-            <End Role="Atendimento" EntitySet="Atendimentoes" />
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="Atendimento" EntitySet="Atendimento" />
           </AssociationSet>
           <AssociationSet Name="FK__Servico__IdClien__286302EC" Association="Self.FK__Servico__IdClien__286302EC">
-            <End Role="Cliente" EntitySet="Clientes" />
-            <End Role="Servico" EntitySet="Servicoes" />
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Servico" EntitySet="Servico" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -258,8 +259,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AlmoxarifadoModelStoreContainer" CdmEntityContainer="AlmoxarifadoEntities">
-          <EntitySetMapping Name="Atendimentoes">
+        <EntityContainerMapping StorageEntityContainer="AlmoxarifadoModelStoreContainer" CdmEntityContainer="AlmoxarifadoEntities1">
+          <EntitySetMapping Name="Atendimento">
             <EntityTypeMapping TypeName="AlmoxarifadoModel.Atendimento">
               <MappingFragment StoreEntitySet="Atendimento">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -274,10 +275,11 @@
                 <ScalarProperty Name="DataInclusao" ColumnName="DataInclusao" />
                 <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
                 <ScalarProperty Name="DataExclusao" ColumnName="DataExclusao" />
+                <ScalarProperty Name="IdServico" ColumnName="IdServico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Clientes">
+          <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="AlmoxarifadoModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -296,7 +298,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Produtoes">
+          <EntitySetMapping Name="Produto">
             <EntityTypeMapping TypeName="AlmoxarifadoModel.Produto">
               <MappingFragment StoreEntitySet="Produto">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -311,7 +313,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Servicoes">
+          <EntitySetMapping Name="Servico">
             <EntityTypeMapping TypeName="AlmoxarifadoModel.Servico">
               <MappingFragment StoreEntitySet="Servico">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -341,7 +343,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

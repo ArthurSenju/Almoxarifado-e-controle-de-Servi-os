@@ -17,7 +17,7 @@ namespace Almoxarifado
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Produto()
         {
-            this.Atendimentoes = new HashSet<Atendimento>();
+            this.Atendimento = new HashSet<Atendimento>();
         }
     
         public int Id { get; set; }
@@ -31,6 +31,6 @@ namespace Almoxarifado
         public Nullable<System.DateTime> DataExclusao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Atendimento> Atendimentoes { get; set; }
+        public virtual ICollection<Atendimento> Atendimento { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace Almoxarifado
         public Nullable<System.DateTime> DataInclusao { get; set; }
         public Nullable<System.DateTime> DataAlteracao { get; set; }
         public Nullable<System.DateTime> DataExclusao { get; set; }
-        public int IdServico { get; set; }
+        public Nullable<int> IdServico { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual Produto Produto { get; set; }

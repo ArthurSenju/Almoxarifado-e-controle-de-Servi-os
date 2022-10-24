@@ -19,7 +19,7 @@ namespace Almoxarifado.Views
 
         private void btnSalvarProd_Click(object sender, EventArgs e)
         {
-            using (var db = new AlmoxarifadoEntities())
+            using (var db = new AlmoxarifadoEntities1())
             {
                 var model = new Produto();
 
@@ -31,14 +31,14 @@ namespace Almoxarifado.Views
                 model.Usado = rbUsado.Checked;
                 model.DataInclusao = DateTime.UtcNow;
 
-                var salvo = db.Produtos.Add(model);
+                var salvo = db.Produto.Add(model);
                 db.SaveChanges();
 
                 if (salvo != null)
                 {
                     string messageBoxText = "Produto Cadastrado com Sucesso";
                     string caption = "Word Processor";
-                    MessageBoxButtons button = MessageBoxButtons.YesNoCancel;
+                    MessageBoxButtons button = MessageBoxButtons.OK;
                     MessageBox.Show(messageBoxText, caption, button);
 
                 }

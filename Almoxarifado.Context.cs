@@ -13,10 +13,10 @@ namespace Almoxarifado
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AlmoxarifadoEntities : DbContext
+    public partial class AlmoxarifadoEntities1 : DbContext
     {
-        public AlmoxarifadoEntities()
-            : base("name=AlmoxarifadoEntities")
+        public AlmoxarifadoEntities1()
+            : base("name=AlmoxarifadoEntities1")
         {
         }
     
@@ -25,9 +25,9 @@ namespace Almoxarifado
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Atendimento> Atendimentos { get; set; }
-        public virtual DbSet<Cliente> Clientes { get; set; }
-        public virtual DbSet<Produto> Produtos { get; set; }
-        public virtual DbSet<Servico> Servicos { get; set; }
+        public virtual DbSet<Atendimento> Atendimento { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Produto> Produto { get; set; }
+        public virtual DbSet<Servico> Servico { get; set; }
     }
 }
