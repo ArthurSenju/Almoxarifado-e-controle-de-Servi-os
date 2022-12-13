@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Almoxarifado;
 
 namespace Almoxarifado
 {
@@ -26,6 +27,54 @@ namespace Almoxarifado
 
 
 
+        }
+
+
+
+        private void frmEntrProd_Load(object sender, EventArgs e)
+        {
+            // TODO: esta linha de código carrega dados na tabela 'almoxarifadoDataSet.Produto'. Você pode movê-la ou removê-la conforme necessário.
+            //this.produtoTableAdapter.Fill(this.almoxarifadoDataSet.Produto);
+            AtualizarGrid();
+
+
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            AtualizarGrid();
+        }
+
+        private void AtualizarGrid()
+        {
+            using(var db = new AlmoxEntities())
+            {
+                //Procura no banco os registro digitado na caixa de pesquisa.
+                var produtosModel = db.Produto.Where(x => x.Ativo == true).ToList();
+
+                //Exibi no Grid os nomes pesquisados no banco de dados.
+                var bindingList = produtosModel;
+                var source = new BindingSource(bindingList, null);
+
+                dgvProdutos.DataSource = null;
+                dgvProdutos.DataSource = source;
+
+                //Atualiza o Grid.
+                dgvProdutos.Update();
+                dgvProdutos.Refresh();
+
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var teste = new DateTime();
+            
         }
     }
 }

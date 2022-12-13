@@ -23,7 +23,7 @@ namespace Almoxarifado
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Especificacao { get; set; }
-        public Nullable<int> ValorUn { get; set; }
+        public string ValorUn { get; set; }
         public Nullable<bool> Usado { get; set; }
         public Nullable<System.DateTime> DataInclusao { get; set; }
         public Nullable<bool> Ativo { get; set; }

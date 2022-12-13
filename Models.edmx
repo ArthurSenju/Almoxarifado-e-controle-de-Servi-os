@@ -48,7 +48,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="nvarchar" MaxLength="50" />
           <Property Name="Especificacao" Type="nvarchar" MaxLength="255" />
-          <Property Name="ValorUn" Type="int" />
+          <Property Name="ValorUn" Type="nvarchar" MaxLength="50" />
           <Property Name="Usado" Type="bit" />
           <Property Name="DataInclusao" Type="datetime" />
           <Property Name="Ativo" Type="bit" />
@@ -176,7 +176,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Especificacao" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ValorUn" Type="Int32" />
+          <Property Name="ValorUn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Usado" Type="Boolean" />
           <Property Name="DataInclusao" Type="DateTime" Precision="3" />
           <Property Name="Ativo" Type="Boolean" />
@@ -236,7 +236,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AlmoxarifadoEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AlmoxEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Atendimento" EntityType="Self.Atendimento" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Produto" EntityType="Self.Produto" />
@@ -259,7 +259,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AlmoxarifadoModelStoreContainer" CdmEntityContainer="AlmoxarifadoEntities1">
+        <EntityContainerMapping StorageEntityContainer="AlmoxarifadoModelStoreContainer" CdmEntityContainer="AlmoxEntities">
           <EntitySetMapping Name="Atendimento">
             <EntityTypeMapping TypeName="AlmoxarifadoModel.Atendimento">
               <MappingFragment StoreEntitySet="Atendimento">

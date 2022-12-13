@@ -55,32 +55,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Almoxarifado.Context.cs">
+    <Compile Include="AlmoxarifadoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Almoxarifado.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Almoxarifado.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Almoxarifado.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Almoxarifado.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Almoxarifado.edmx</DependentUpon>
+      <DependentUpon>AlmoxarifadoDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Atendimento.cs">
-      <DependentUpon>Almoxarifado.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Cliente.cs">
-      <DependentUpon>Almoxarifado.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.edmx</DependentUpon>
     </Compile>
     <Compile Include="Produto.cs">
-      <DependentUpon>Almoxarifado.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Servico.cs">
-      <DependentUpon>Almoxarifado.tt</DependentUpon>
+      <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\CadastroProduto.cs">
       <SubType>Form</SubType>
@@ -111,12 +116,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Almoxarifado.edmx">
+    <None Include="AlmoxarifadoDataSet.xsc">
+      <DependentUpon>AlmoxarifadoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AlmoxarifadoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AlmoxarifadoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AlmoxarifadoDataSet.xss">
+      <DependentUpon>AlmoxarifadoDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="Models.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Almoxarifado.Designer.cs</LastGenOutput>
+      <LastGenOutput>Models.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Almoxarifado.edmx.diagram">
-      <DependentUpon>Almoxarifado.edmx</DependentUpon>
+    <None Include="Models.edmx.diagram">
+      <DependentUpon>Models.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -136,15 +152,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Almoxarifado.Context.tt">
+    <Content Include="Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Almoxarifado.edmx</DependentUpon>
-      <LastGenOutput>Almoxarifado.Context.cs</LastGenOutput>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Almoxarifado.tt">
+    <Content Include="Models.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Almoxarifado.edmx</DependentUpon>
-      <LastGenOutput>Almoxarifado.cs</LastGenOutput>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

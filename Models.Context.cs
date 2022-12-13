@@ -13,10 +13,10 @@ namespace Almoxarifado
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AlmoxarifadoEntities1 : DbContext
+    public partial class AlmoxEntities : DbContext
     {
-        public AlmoxarifadoEntities1()
-            : base("name=AlmoxarifadoEntities1")
+        public AlmoxEntities()
+            : base("name=AlmoxEntities")
         {
         }
     

@@ -30,7 +30,6 @@
         {
             this.txtNomeProd = new System.Windows.Forms.TextBox();
             this.txtDescricaoProd = new System.Windows.Forms.TextBox();
-            this.txtValorUni = new System.Windows.Forms.NumericUpDown();
             this.rbUsado = new System.Windows.Forms.RadioButton();
             this.lblNomeProd = new System.Windows.Forms.Label();
             this.lblDescricaoProd = new System.Windows.Forms.Label();
@@ -38,7 +37,7 @@
             this.btnSalvarProd = new System.Windows.Forms.Button();
             this.btnLimparProd = new System.Windows.Forms.Button();
             this.btnSairProd = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.txtValorUni)).BeginInit();
+            this.txtValorUni = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtNomeProd
@@ -55,13 +54,6 @@
             this.txtDescricaoProd.Name = "txtDescricaoProd";
             this.txtDescricaoProd.Size = new System.Drawing.Size(300, 113);
             this.txtDescricaoProd.TabIndex = 1;
-            // 
-            // txtValorUni
-            // 
-            this.txtValorUni.Location = new System.Drawing.Point(300, 145);
-            this.txtValorUni.Name = "txtValorUni";
-            this.txtValorUni.Size = new System.Drawing.Size(174, 20);
-            this.txtValorUni.TabIndex = 2;
             // 
             // rbUsado
             // 
@@ -122,18 +114,27 @@
             // 
             // btnSairProd
             // 
-            this.btnSairProd.Location = new System.Drawing.Point(751, 12);
+            this.btnSairProd.Location = new System.Drawing.Point(715, 12);
             this.btnSairProd.Name = "btnSairProd";
-            this.btnSairProd.Size = new System.Drawing.Size(37, 25);
+            this.btnSairProd.Size = new System.Drawing.Size(73, 29);
             this.btnSairProd.TabIndex = 5;
-            this.btnSairProd.Text = "button1";
+            this.btnSairProd.Text = "Sair";
             this.btnSairProd.UseVisualStyleBackColor = true;
+            this.btnSairProd.Click += new System.EventHandler(this.btnSairProd_Click);
+            // 
+            // txtValorUni
+            // 
+            this.txtValorUni.Location = new System.Drawing.Point(300, 146);
+            this.txtValorUni.Name = "txtValorUni";
+            this.txtValorUni.Size = new System.Drawing.Size(174, 20);
+            this.txtValorUni.TabIndex = 6;
             // 
             // CadastroProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtValorUni);
             this.Controls.Add(this.btnSairProd);
             this.Controls.Add(this.btnLimparProd);
             this.Controls.Add(this.btnSalvarProd);
@@ -141,12 +142,10 @@
             this.Controls.Add(this.lblDescricaoProd);
             this.Controls.Add(this.lblNomeProd);
             this.Controls.Add(this.rbUsado);
-            this.Controls.Add(this.txtValorUni);
             this.Controls.Add(this.txtDescricaoProd);
             this.Controls.Add(this.txtNomeProd);
             this.Name = "CadastroProduto";
             this.Text = "CadastroProduto";
-            ((System.ComponentModel.ISupportInitialize)(this.txtValorUni)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,7 +155,6 @@
 
         private System.Windows.Forms.TextBox txtNomeProd;
         private System.Windows.Forms.TextBox txtDescricaoProd;
-        private System.Windows.Forms.NumericUpDown txtValorUni;
         private System.Windows.Forms.RadioButton rbUsado;
         private System.Windows.Forms.Label lblNomeProd;
         private System.Windows.Forms.Label lblDescricaoProd;
@@ -164,5 +162,6 @@
         private System.Windows.Forms.Button btnSalvarProd;
         private System.Windows.Forms.Button btnLimparProd;
         private System.Windows.Forms.Button btnSairProd;
+        private System.Windows.Forms.TextBox txtValorUni;
     }
 }

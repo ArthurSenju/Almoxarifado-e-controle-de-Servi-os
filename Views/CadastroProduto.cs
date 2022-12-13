@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Almoxarifado;
 
 namespace Almoxarifado.Views
 {
@@ -19,15 +20,15 @@ namespace Almoxarifado.Views
 
         private void btnSalvarProd_Click(object sender, EventArgs e)
         {
-            using (var db = new AlmoxarifadoEntities1())
+
+            using (var db = new AlmoxEntities())
             {
                 var model = new Produto();
 
                 model.Nome = txtNomeProd.Text;
                 model.Especificacao = txtDescricaoProd.Text;
                 model.Ativo = true;
-                var valorUni = txtValorUni.Value;
-                model.ValorUn = Convert.ToInt32(valorUni);
+                model.ValorUn = txtValorUni.Text;
                 model.Usado = rbUsado.Checked;
                 model.DataInclusao = DateTime.UtcNow;
 
@@ -37,9 +38,12 @@ namespace Almoxarifado.Views
                 if (salvo != null)
                 {
                     string messageBoxText = "Produto Cadastrado com Sucesso";
-                    string caption = "Word Processor";
+                    string caption = "Sucesso!";
                     MessageBoxButtons button = MessageBoxButtons.OK;
                     MessageBox.Show(messageBoxText, caption, button);
+                    frmEntrProd controleProduto = new frmEntrProd();
+                    this.Hide();
+                    controleProduto.Show();
 
                 }
                 else
@@ -47,6 +51,13 @@ namespace Almoxarifado.Views
                     MessageBox.Show("Produto não Inserido");
                 }
             }
+        }
+
+        private void btnSairProd_Click(object sender, EventArgs e)
+        {
+            frmEntrProd controleProduto = new frmEntrProd();
+            this.Hide();
+            controleProduto.Show();
         }
     }
 }
