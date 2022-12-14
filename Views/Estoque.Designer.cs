@@ -34,14 +34,16 @@
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.btnProduto = new System.Windows.Forms.Button();
             this.dgvProdutos = new System.Windows.Forms.DataGridView();
+            this.almoxarifadoDataSet = new Almoxarifado.AlmoxarifadoDataSet();
+            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.produtoTableAdapter = new Almoxarifado.AlmoxarifadoDataSetTableAdapters.ProdutoTableAdapter();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.txtCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorUni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prodUsado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.descricaoProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAlterar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.almoxarifadoDataSet = new Almoxarifado.AlmoxarifadoDataSet();
-            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.produtoTableAdapter = new Almoxarifado.AlmoxarifadoDataSetTableAdapters.ProdutoTableAdapter();
+            this.checkAlterar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.almoxarifadoDataSet)).BeginInit();
@@ -50,6 +52,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAlterar);
             this.groupBox1.Controls.Add(this.btnExportar);
             this.groupBox1.Controls.Add(this.btnPesquisar);
             this.groupBox1.Controls.Add(this.btnProduto);
@@ -62,7 +65,7 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.Location = new System.Drawing.Point(7, 49);
+            this.btnExportar.Location = new System.Drawing.Point(6, 104);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(117, 23);
             this.btnExportar.TabIndex = 3;
@@ -96,17 +99,47 @@
             this.dgvProdutos.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProdutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.txtCodigo,
             this.Nome,
             this.valorUni,
             this.prodUsado,
             this.descricaoProd,
-            this.btnAlterar});
+            this.checkAlterar});
             this.dgvProdutos.DataSource = this.almoxarifadoDataSet;
             this.dgvProdutos.Location = new System.Drawing.Point(142, 12);
             this.dgvProdutos.Name = "dgvProdutos";
             this.dgvProdutos.Size = new System.Drawing.Size(715, 356);
             this.dgvProdutos.TabIndex = 0;
-            this.dgvProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutos_CellContentClick);
+            // 
+            // almoxarifadoDataSet
+            // 
+            this.almoxarifadoDataSet.DataSetName = "AlmoxarifadoDataSet";
+            this.almoxarifadoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // produtoBindingSource
+            // 
+            this.produtoBindingSource.DataMember = "Produto";
+            this.produtoBindingSource.DataSource = this.almoxarifadoDataSet;
+            // 
+            // produtoTableAdapter
+            // 
+            this.produtoTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Location = new System.Drawing.Point(7, 62);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(117, 23);
+            this.btnAlterar.TabIndex = 3;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.DataPropertyName = "Id";
+            this.txtCodigo.HeaderText = "Código";
+            this.txtCodigo.Name = "txtCodigo";
             // 
             // Nome
             // 
@@ -135,27 +168,10 @@
             this.descricaoProd.HeaderText = "Descrição";
             this.descricaoProd.Name = "descricaoProd";
             // 
-            // btnAlterar
+            // checkAlterar
             // 
-            this.btnAlterar.HeaderText = "Atualizar Produto";
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.ToolTipText = "Alterar";
-            this.btnAlterar.UseColumnTextForButtonValue = true;
-            // 
-            // almoxarifadoDataSet
-            // 
-            this.almoxarifadoDataSet.DataSetName = "AlmoxarifadoDataSet";
-            this.almoxarifadoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // produtoBindingSource
-            // 
-            this.produtoBindingSource.DataMember = "Produto";
-            this.produtoBindingSource.DataSource = this.almoxarifadoDataSet;
-            // 
-            // produtoTableAdapter
-            // 
-            this.produtoTableAdapter.ClearBeforeFill = true;
+            this.checkAlterar.HeaderText = "Alterar?";
+            this.checkAlterar.Name = "checkAlterar";
             // 
             // frmEntrProd
             // 
@@ -184,11 +200,13 @@
         private AlmoxarifadoDataSet almoxarifadoDataSet;
         private System.Windows.Forms.BindingSource produtoBindingSource;
         private AlmoxarifadoDataSetTableAdapters.ProdutoTableAdapter produtoTableAdapter;
+        private System.Windows.Forms.Button btnAlterar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorUni;
         private System.Windows.Forms.DataGridViewCheckBoxColumn prodUsado;
         private System.Windows.Forms.DataGridViewTextBoxColumn descricaoProd;
-        private System.Windows.Forms.DataGridViewButtonColumn btnAlterar;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn checkAlterar;
     }
 }
 

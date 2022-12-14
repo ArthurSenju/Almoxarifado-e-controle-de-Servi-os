@@ -68,13 +68,17 @@ namespace Almoxarifado
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow item in dgvProdutos.Rows)
+            {
+                if (item.Cells[5].Value != null)
+                {
+                    var idConversao = item.Cells[0].Value.ToString();
+                    var id = int.Parse(idConversao);
+                    CadastroProduto cadastroProduto = new CadastroProduto();
+                    cadastroProduto.Atualizar(id);
+                }
+            }
 
-        }
-
-        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var teste = new DateTime();
-            
-        }
+        }   
     }
 }

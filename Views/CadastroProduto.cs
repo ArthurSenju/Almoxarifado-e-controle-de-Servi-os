@@ -53,6 +53,25 @@ namespace Almoxarifado.Views
             }
         }
 
+        public void Atualizar(int id)
+        {
+            CadastroProduto cadastroProduto = new CadastroProduto();
+            cadastroProduto.Show();
+            
+            using (var db = new AlmoxEntities())
+            {
+                var model = db.Produto.FirstOrDefault(x => x.Id == id);
+                if (model != null)
+                {
+                    txtNomeProd.Text = model.Nome;
+                    txtDescricaoProd.Text = model.Especificacao;
+                    txtValorUni.Text = model.ValorUn.ToString();
+                    rbUsado.Checked = model.Usado.Value;
+
+                }
+            }
+        }
+
         private void btnSairProd_Click(object sender, EventArgs e)
         {
             frmEntrProd controleProduto = new frmEntrProd();
