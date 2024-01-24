@@ -75,6 +75,7 @@ namespace Almoxarifado
                     var idConversao = item.Cells[0].Value.ToString();
                     var id = int.Parse(idConversao);
                     CadastroProduto cadastroProduto = new CadastroProduto(id);
+                    this.Hide();
                     cadastroProduto.Show();
                 }
             }
