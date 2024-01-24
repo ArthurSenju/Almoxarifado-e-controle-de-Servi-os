@@ -21,7 +21,7 @@ namespace Almoxarifado
 
         private void btnProduto_Click(object sender, EventArgs e)
         {
-            CadastroProduto cadastroProduto = new CadastroProduto();
+            CadastroProduto cadastroProduto = new CadastroProduto(null);
             this.Hide();
             cadastroProduto.Show();
 
@@ -74,8 +74,8 @@ namespace Almoxarifado
                 {
                     var idConversao = item.Cells[0].Value.ToString();
                     var id = int.Parse(idConversao);
-                    CadastroProduto cadastroProduto = new CadastroProduto();
-                    cadastroProduto.Atualizar(id);
+                    CadastroProduto cadastroProduto = new CadastroProduto(id);
+                    cadastroProduto.Show();
                 }
             }
 

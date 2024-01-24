@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(int? id)
         {
             this.txtNomeProd = new System.Windows.Forms.TextBox();
             this.txtDescricaoProd = new System.Windows.Forms.TextBox();
@@ -39,6 +39,7 @@
             this.btnSairProd = new System.Windows.Forms.Button();
             this.txtValorUni = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
+
             // 
             // txtNomeProd
             // 
@@ -101,6 +102,7 @@
             this.btnSalvarProd.TabIndex = 5;
             this.btnSalvarProd.Text = "Salvar";
             this.btnSalvarProd.UseVisualStyleBackColor = true;
+            this.btnSalvarProd.Tag = new DTO.CadastroProdutoDTO { Id = id };
             this.btnSalvarProd.Click += new System.EventHandler(this.btnSalvarProd_Click);
             // 
             // btnLimparProd
@@ -148,6 +150,14 @@
             this.Text = "CadastroProduto";
             this.ResumeLayout(false);
             this.PerformLayout();
+
+            if (id != null)
+            {
+                var modelaAtt = ProcurarAtualizar(id.Value);
+                this.txtNomeProd.Text = modelaAtt.Nome;
+                this.txtDescricaoProd.Text = modelaAtt.Descricao;
+                this.txtValorUni.Text = modelaAtt.Valor;
+            }
 
         }
 
