@@ -50,6 +50,7 @@ namespace Almoxarifado.Views
                             frmEntrProd controleProduto = new frmEntrProd();
                             this.Hide();
                             controleProduto.Show();
+                            controleProduto.AtualizarGrid();
 
                         }
                         else
@@ -81,6 +82,7 @@ namespace Almoxarifado.Views
                 frmEntrProd controleProduto = new frmEntrProd();
                 this.Hide();
                 controleProduto.Show();
+                controleProduto.AtualizarGrid();
             }
 
         }

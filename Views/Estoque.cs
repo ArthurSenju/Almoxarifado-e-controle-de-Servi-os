@@ -45,9 +45,9 @@ namespace Almoxarifado
             AtualizarGrid();
         }
 
-        private void AtualizarGrid()
+        public void AtualizarGrid()
         {
-            using(var db = new AlmoxEntities())
+            using (var db = new AlmoxEntities())
             {
                 //Procura no banco os registro digitado na caixa de pesquisa.
                 var produtosModel = db.Produto.Where(x => x.Ativo == true).ToList();
@@ -80,6 +80,38 @@ namespace Almoxarifado
                 }
             }
 
-        }   
+        }
+
+        private void excluirProd_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow item in dgvProdutos.Rows)
+            {
+                if (item.Cells[6].Value != null)
+                {
+                    var idConversao = item.Cells[0].Value.ToString();
+                    var id = int.Parse(idConversao);
+                    using (var db = new AlmoxEntities())
+                    {
+                        var model = db.Produto.FirstOrDefault(x => x.Id == id);
+                        if (model != null)
+                        {
+                            model.DataExclusao = DateTime.Now;
+                            model.Ativo = false;
+                            db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                            db.SaveChanges();
+                            string messageBoxText = "Produto Excluido com Sucesso";
+                            string caption = "Sucesso!";
+                            MessageBoxButtons button = MessageBoxButtons.OK;
+                            MessageBox.Show(messageBoxText, caption, button);
+                            AtualizarGrid();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Produto não encontrado");
+                        }
+                    }
+                }
+            }
+        }
     }
 }
