@@ -88,11 +88,23 @@
     <Compile Include="Servico.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\CadastroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CadastroCliente.Designer.cs">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CadastroProduto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\CadastroProduto.Designer.cs">
       <DependentUpon>CadastroProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ControleCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ControleCliente.Designer.cs">
+      <DependentUpon>ControleCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Estoque.cs">
       <SubType>Form</SubType>
@@ -102,8 +114,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Views\CadastroCliente.resx">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\CadastroProduto.resx">
       <DependentUpon>CadastroProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ControleCliente.resx">
+      <DependentUpon>ControleCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Estoque.resx">
       <DependentUpon>Estoque.cs</DependentUpon>
